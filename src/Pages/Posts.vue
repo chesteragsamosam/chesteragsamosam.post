@@ -85,7 +85,7 @@
 					<button
 						v-if="currentPage > 1"
 						class="px-3 py-1 mx-1 text-gray-700 rounded-md hover:bg-gray-300"
-						@click="currentPage--"
+						@click="prevPage()"
 					>
 						Prev
 					</button>
@@ -104,7 +104,7 @@
 					<button
 						v-if="currentPage < pageCount"
 						class="px-3 py-1 mx-1 text-gray-700 rounded-md hover:bg-gray-300"
-						@click="currentPage++"
+						@click="nextPage()"
 					>
 						Next
 					</button>
@@ -151,7 +151,18 @@ const displayedPosts = computed(() => {
 });
 const currentPage = ref(1);
 const goToPage = (page) => {
+	window.scrollTo({
+		top: 0,
+		left: 0,
+		behavior: "smooth",
+	});
 	currentPage.value = page;
+};
+const nextPage = () => {
+	goToPage(currentPage.value + 1);
+};
+const prevPage = () => {
+	goToPage(currentPage.value - 1);
 };
 const isLoading = ref(false);
 const errorMessage = ref("");
