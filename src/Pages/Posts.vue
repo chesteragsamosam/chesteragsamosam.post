@@ -179,12 +179,14 @@ const deletePost = (guid) => {
 
 const addComment = (comment) => {
 	store.commit("addComment", { guid: currentPostGuid.value, comment });
+	showModal.value = false;
 };
 
 const addPost = () => {
 	if (!postToAdd) return;
 	store.commit("addPost", postToAdd.value);
 	postToAdd.value = "";
+	prompting.value = false;
 };
 const handleUpdatePost = (name) => {
 	store.commit("updatePost", {
